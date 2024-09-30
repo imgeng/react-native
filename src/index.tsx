@@ -1,3 +1,5 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+import * as Types from './types';
+import * as ResponsiveComp from './responsive_comp';
+import * as Utils from './utils';
+
+export { Types, ResponsiveComp, Utils };
