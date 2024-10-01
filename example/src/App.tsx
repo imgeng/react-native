@@ -1,30 +1,40 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'imageengine-reactnative';
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import { Types } from '../../src/index';
+import ResponsiveImage from '../../src/responsive_comp';
+import { Text } from 'react-native';
 
-export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+const srcSet: Types.TSrcSet = [
+  {
+    src: '/images/pic_1_variation_2.jpg',
+    directives: { rotate: 180 },
+    width: '320w',
+  },
+  {
+    src: '/images/pic_1_variation_2.jpg',
+    directives: { rotate: 180 },
+    width: '480w',
+  },
+  {
+    src: '/images/pic_1_variation_1.jpg',
+    directives: { rotate: 180 },
+    width: '800w',
+  },
+];
 
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+const App: React.FC = () => {
+  console.log('App component rendered');
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView>
+      <Text>App Component Loaded</Text>
+      <ResponsiveImage
+        srcSet={srcSet}
+        src="/images/pic_1_variation_2.jpg"
+        deliveryAddress="http://blazing-fast-pics.cdn.imgeng.in"
+        stripFromSrc=""
+      />
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
+export default App;
