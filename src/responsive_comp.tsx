@@ -25,7 +25,10 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
     width ?? 0,
     stripFromSrc ?? ''
   );
-  return <Image source={{ uri: optimizedSrc }} />;
+  console.log('Constructed image URL:', optimizedSrc);
+  return (
+    <Image source={{ uri: optimizedSrc }} style={{ width: 300, height: 300 }} />
+  );
 };
 
 export default ResponsiveImage;
