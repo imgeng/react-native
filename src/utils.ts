@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 import type { TSrcSet } from './types';
 import type { IEDirectives } from '@imageengine/imageengine-helpers';
 import type { IEFormat } from '@imageengine/imageengine-helpers';
+import { build_IE_url } from '@imageengine/imageengine-helpers';
 
 export function generateOptimizedImageUrl(
   srcSet: TSrcSet,
@@ -18,7 +19,7 @@ export function generateOptimizedImageUrl(
     defaultWidth
   );
   const processedSrc = processUrl(chosenEntry.src, stripFromSrc);
-  const directives = chosenEntry.directives || {};
+  const directives = chosenEntry.directives;
   const finalDirectives = {
     ...directives,
     width: chosenEntry.width
@@ -28,14 +29,16 @@ export function generateOptimizedImageUrl(
   return constructUrl(`${deliveryAddress}${processedSrc}`, finalDirectives);
 }
 
-function chooseAppropriateImage(
+export function chooseAppropriateImage(
   srcSet: TSrcSet,
   availableWidth: number,
   defaultSrc: string,
   defaultWidth: number
 ) {
   let bestFit: TSrcSet[number] | null = null;
-  srcSet.forEach((entry) => {
+  for (let i = 0; i < srcSet.length; i++) {
+    const entry = srcSet[i];
+    if (!entry) continue;
     const entryWidth = parseInt(entry.width.replace('w', ''), 10);
     if (
       availableWidth >= entryWidth &&
@@ -43,7 +46,7 @@ function chooseAppropriateImage(
     ) {
       bestFit = entry;
     }
-  });
+  }
   return (
     bestFit || {
       src: defaultSrc,
@@ -69,7 +72,7 @@ const ALLOWED_INPUT_EXTENSIONS: (IEFormat | 'tif')[] = [
   'tif',
 ];
 
-function processUrl(url: string, stripFromSrc: string) {
+export function processUrl(url: string, stripFromSrc: string) {
   if (stripFromSrc) {
     url = url.replace(stripFromSrc, '');
   }
@@ -80,6 +83,6 @@ function processUrl(url: string, stripFromSrc: string) {
   return url;
 }
 
-function constructUrl(src: string, _directives: IEDirectives) {
-  return src;
+export function constructUrl(src: string, directives: IEDirectives) {
+  return build_IE_url(src, directives);
 }
