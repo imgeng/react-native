@@ -1,10 +1,9 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import { Types } from '../../src/index';
-import ResponsiveImage from '../../src/responsive_comp';
+import { ResponsiveImage } from 'imageengine-reactnative';
 import { Text } from 'react-native';
 
-const srcSet: Types.TSrcSet = [
+const srcSet = [
   {
     src: '/images/pic_1_variation_2.jpg',
     directives: { rotate: 180 },
