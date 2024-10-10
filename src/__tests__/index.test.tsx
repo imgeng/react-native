@@ -28,7 +28,7 @@ describe('generateOptimizedImageUrl', () => {
       400,
       ''
     );
-    expect(url).toBe('https://example.com/image-800w.jpg');
+    expect(url).toBe('https://example.com/image-800w.jpg?imgeng=/w_800');
   });
 
   it('should use default image if no appropriate image found', () => {
@@ -40,7 +40,7 @@ describe('generateOptimizedImageUrl', () => {
       400,
       ''
     );
-    expect(url).toBe('https://example.com/default.jpg');
+    expect(url).toBe('https://example.com/default.jpg?imgeng=/w_400');
   });
 
   it('should strip specified part from URL', () => {
@@ -52,7 +52,7 @@ describe('generateOptimizedImageUrl', () => {
       400,
       'image-'
     );
-    expect(url).toBe('https://example.com/800w.jpg');
+    expect(url).toBe('https://example.com/800w.jpg?imgeng=/w_800');
   });
 
   it('should warn if image format is unsupported', () => {
