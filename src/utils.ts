@@ -47,11 +47,19 @@ export function chooseAppropriateImage(
       bestFit = entry;
     }
   }
+  // Compare bestFit with default, ensuring it doesn't exceed availableWidth
+  if (
+    bestFit &&
+    parseInt(bestFit.width.replace('w', ''), 10) < defaultWidth &&
+    defaultWidth < availableWidth
+  ) {
+    bestFit = null;
+  }
   return (
     bestFit || {
       src: defaultSrc,
       width: defaultWidth?.toString(),
-      directives: {},
+      directives: {}, // should add default directives in the main function if it makes sense
     }
   );
 }
