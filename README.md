@@ -2,6 +2,10 @@
 
 This project provides a React Native package for building optimized image URLs using ImageEngine. It includes utility functions and components to handle responsive images efficiently.
 
+## Live Demo
+
+Check out our [CodeSandbox demo](https://codesandbox.io/p/sandbox/serene-wing-jtz6cl) to see the `imageengine-reactnative` package in action.
+
 ## Installation
 
 `npm install imageengine-reactnative`
