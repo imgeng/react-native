@@ -8,7 +8,7 @@ Check out our [CodeSandbox demo](https://codesandbox.io/p/sandbox/serene-wing-jt
 
 ## Installation
 
-`npm install imageengine-reactnative`
+`npm install @imageengine/reactnative`
 
 ## Usage
 
