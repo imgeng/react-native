@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import { ResponsiveImage } from 'imageengine-reactnative';
+import { ResponsiveImage } from '@imageengine/reactnative';
 import { Text } from 'react-native';
 
 const srcSet = [
